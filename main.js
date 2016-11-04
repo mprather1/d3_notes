@@ -11,6 +11,9 @@ var data2 = new Data({circleRadii: 20, nub: 2})
 var data3 = new Data({circleRadii: 10, nub: 3})
 var datas = new Datas([data1, data2, data3])
 
+// Make a purple circle
+//##############################################
+
 d3.select("body").append("p")
 
 var bodySelection = d3.select("body");
@@ -25,18 +28,24 @@ var circleSelection = svgSelection.append("circle")
   .attr("r", 25)
   .style("fill", "purple");
 
- var p = d3.select("body").selectAll("p")
+// Show data and index
+//##############################################
+
+var p = d3.select("body").selectAll("p")
   .data(datas.pluck('nub'))
   .enter()
   .append("p")
   .text(function(d, i) { 
     return "i: " + i + "; d: " + d;
-  });
-  
-  var svgContainer = d3.select('body')
-    .append('svg')
-    .attr('width', 200)
-    .attr('height', 200)
+});
+ 
+ // Create three circles from radius in Backbone collection
+//##############################################
+
+var svgContainer = d3.select('body')
+  .append('svg')
+  .attr('width', 200)
+  .attr('height', 200)
 
 var circles = svgContainer.selectAll("circle")
   .data(datas.pluck('circleRadii'))
